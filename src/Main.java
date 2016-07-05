@@ -4,22 +4,38 @@ public class Main {
     public static void main(String[] args) {
 
         int[] arr = {5, 3, 1, 8, 7, 2, 4};
+
+        boolean isArraySorted = false;
         int j = arr.length;
 
-        System.out.print("Array before sort: ");
-        for (int i : arr) {
-            System.out.print(i);
-            System.out.print("");
+        for (int i = 0; i <= j && i + 1 < j; i++) {
+            if (arr[i] <= arr[i + 1]) {
+                isArraySorted = true;
+            } else {
+                isArraySorted = false;
+                break;
+            }
         }
 
-        sort(arr, j);
+        if (isArraySorted) {
+            System.out.println("Array already sorted. Sorting is not needed.");
+            return;
+        }
+
+        System.out.print("Array before sort: ");
+        for (int item : arr) {
+            System.out.print(item);
+            System.out.print(" ");
+        }
+
+        sort(arr, arr.length);
 
         System.out.println();
 
         System.out.print("Array after sort: ");
-        for (int i : arr) {
-            System.out.print(i);
-            System.out.print("");
+        for (int item : arr) {
+            System.out.print(item);
+            System.out.print(" ");
         }
     }
 
@@ -34,8 +50,7 @@ public class Main {
                 sort(arr, i);
             } else {
                 if (arr[i] > arr[i + 1]) {
-                    int temp = 0;
-                    temp = arr[i + 1];
+                    int temp = arr[i + 1];
                     arr[i + 1] = arr[i];
                     arr[i] = temp;
                 }
